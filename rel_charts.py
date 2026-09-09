@@ -49,6 +49,18 @@ def chart_panels(h1, rows, headline=None):
             # Plotly menamai sumbu subplot pertama "x" tanpa angka, bukan "x1".
             # Memakai "x1 domain" akan ditolak dan seluruh chart gagal dirender.
             ax_suffix = "" if i == 0 else str(i + 1)
+
+            # Subplot ini tidak mendapat trace data sama sekali. Tanpa trace,
+            # sumbu x/y-nya tidak pernah "diaktifkan" oleh Plotly, dan anotasi
+            # "domain" yang ditujukan padanya salah tempat, dirender di sumbu
+            # subplot PERTAMA (bank IDX tanpa EBITDA jadi contoh nyatanya:
+            # panel EV/EBITDA kosong lalu merusak sumbu tanggal panel P/E).
+            # Trace tak-terlihat ini semata untuk mendaftarkan sumbu tersebut.
+            fig.add_trace(go.Scatter(
+                x=[s.index[0], s.index[-1]], y=[None, None], mode="markers",
+                marker=dict(opacity=0), showlegend=False, hoverinfo="skip"),
+                row=rr, col=cc)
+
             fig.add_annotation(text="insufficient data",
                                xref=f"x{ax_suffix} domain",
                                yref=f"y{ax_suffix} domain",
