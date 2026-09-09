@@ -15,7 +15,7 @@ URUTAN ALUR:
 
 CARA PAKAI:
     from rel_main import analyze_relative
-    r = analyze_relative("BUVA")
+    r = analyze_relative("AMMN")
 =============================================================================
 """
 
@@ -276,7 +276,7 @@ def quality_table(d):
 
 if __name__ == "__main__":
     import sys
-    code = sys.argv[1] if len(sys.argv) > 1 else "BUVA"
+    code = sys.argv[1] if len(sys.argv) > 1 else "AMMN"
     r = analyze_relative(code)
     if not r["ok"]:
         print("GAGAL:", r["error"])

@@ -95,7 +95,7 @@ with st.sidebar:
     def _uppercase_ticker():
         st.session_state.ticker_in = st.session_state.ticker_in.upper()
 
-    ticker_in = st.text_input("Ticker", value="BUVA", max_chars=4, key="ticker_in",
+    ticker_in = st.text_input("Ticker", value="AMMN", max_chars=4, key="ticker_in",
                               on_change=_uppercase_ticker,
                               help="Enter the IDX code only, max 4 characters. "
                                    "The .JK suffix is added automatically.")
